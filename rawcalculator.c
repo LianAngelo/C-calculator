@@ -45,11 +45,19 @@ int main () {
 			printf ("Result = %.2f", calcu1 * calcu2);		
 			break;
 		case  4:
-			printf ("Result = %.2f", calcu1 / calcu2);
-			break;
+			if (calcu2 != 0) {
+				printf ("Result = %.2f", calcu1 / calcu2);
+			} else {
+				printf ("Cannot be divided by zero");
+			}
+						
 		case 5:
-			printf ("Result = %.2f", fmod(calcu1, calcu2));
-			break;
+			if (calcu !=0) {
+				printf ("Result = %.2f" fmod(calcu1, calcu2));
+			} else {
+				printf ("Cannot be modulo by zero");
+			}
+			
 		default:
 			printf ("Invalid operator");	
 			
