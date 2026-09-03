@@ -6,11 +6,38 @@ int main () {
 	char name[100];
 	float English, Science, Math;
 	float average;
+	char again;
+	int pin;
+	int correctPin = 54321;
+	int attempts = 0;
+		
+	
+	printf ("\nENTER THE PASS\n");
+	
+	while (attempts < 3) {
+		printf("\nEnter the PIN: ");
+		scanf("%d", &pin);
+		
+		if (pin == correctPin) {
+			printf("\nAccess Granted");
+			break;
+		}
+		else {
+			attempts++;
+			printf ("\nIncorrect PIN!\n");
+		}
+	}
+	
+	if (attempts == 3) {
+		printf ("\nToo many incorrect attempts. ");
+		return 0;
+	}
+	do {
 	
 	printf("\nSTUDENT GRADE CALCULATOR\n");
 	
 	printf ("\nEnter the student name: ");
-	scanf("%s", &name);
+	scanf("%s", name);
 	
 	printf ("Enter English grade: ");
 	scanf("%f", &English);
@@ -34,5 +61,11 @@ int main () {
 		printf ("RESULT: FAILED\n");
 	}
 	
+	printf ("\nCalculate another student? (Y/N): ");
+	scanf(" %c", &again);
+	
+	attempts = 0;
+	
+	} while (again == 'Y' || again == 'y');
 	return 0;
 }
