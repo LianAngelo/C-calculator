@@ -39,13 +39,13 @@ int main () {
 	printf ("\nEnter the student name: ");
 	scanf("%s", name);
 	
-	printf ("Enter English grade: ");
+	printf ("\nEnter English grade: ");
 	scanf("%f", &English);
 	
-	printf ("Enter Science grade: ");
+	printf ("\nEnter Science grade: ");
 	scanf("%f", &Science);
 	
-	printf ("Enter Math grade: ");
+	printf ("\nEnter Math grade: ");
 	scanf("%f", &Math);
 	
 	
