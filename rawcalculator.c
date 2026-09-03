@@ -5,8 +5,44 @@ int main () {
 	
 	float calcu1, calcu2;
 	int choice = 0;
+	int again = 1;
+	float result;
+	float sum = 0;
+	float history[100];
+	float firstNumber[100];
+	float secondNumber[100];
+	char operation[100];
+	int count = 0;
+	int decimal = 2;
+	int settingsChoice;
+	int pin;
+	int correctPin = 12345;
+	int attempts, currentPin, newPin;
+	int settingsAgain = 1; 
+	int numerator, denominator;
 	
-	while (choice != 6) {
+	printf ("-----PASSKEY TO THE CALCULATOR----\n");
+	
+	while (attempts < 3) {
+		printf ("\nEnter the PIN: ");
+		scanf("%d", &pin);
+		
+		if (pin == correctPin) {
+			printf ("\nAccess granted!\n");
+			break;
+		}
+		else {
+			attempts++;
+			printf ("\nIncorrect PIN!\n");
+		}
+	}
+	
+	if (attempts == 3) {
+		printf ("\nToo many incorrect attempts. ");
+		return 0;
+	}
+	
+	while (choice != 14 && again == 1) {
 	
 	printf ("\nCALCULATOR");
 	printf ("\n1. Addition");
@@ -14,16 +50,150 @@ int main () {
 	printf ("\n3. Multiplication");
 	printf ("\n4. Division");
 	printf ("\n5. Modulo");
-	printf ("\n6 Exit");
+	printf ("\n6. Power");
+	printf ("\n7. Square Root");
+	printf ("\n8. View History");
+	printf ("\n9. Clear History");
+	printf ("\n10. Show Calculation count");
+	printf ("\n11. Show Average");
+	printf ("\n12. Settings");
+	printf ("\n13. Fraction");
+	printf ("\n14. Exit");
+	
 	printf ("\nEnter your choice: ");
 	scanf ("%d",&choice);
 	
-	if (choice == 6) {
+	if (choice == 14) {
 		printf ("\nCalculator closed");
 		break;
 	}
+	if (choice == 8) {
+		
+		printf ("\nHISTORY");
+		
+		for (int i = 0; i < count; i++) {
+		
+		
+		if (operation[i] == 'r') {
+			printf ("sqrt%.2f = %.2f\n",
+					firstNumber[i],
+					history[i]);
+		}
+		else {
+		
+			printf ("%.2f %c %.2f = %.2f\n",
+				firstNumber[i],
+				operation[i],
+				secondNumber[i],
+				history[i]);
+			}
+		}
+	}
+	else if (choice == 9) {
+		
+		count = 0;
+		printf ("\nHistory cleared!");	
+	}
+	else if (choice == 10) {
+		printf ("\nTotal calculation: %d", count);
+	}
+	
+	else if (choice == 11) {
+		sum = 0;
+		
+		for (int i = 0; i < count; i++) {
+			sum = sum + history[i];
+		}
+		
+		if (count > 0) {
+			printf ("\nAverage result: %.2f", sum / count);
+		}
+		else {
+			printf ("\nNo calculations in history");
+		}
+	}
+	else if (choice == 12) {
+		
+		settingsAgain = 1;
+		
+		while (settingsAgain == 1) {
+		
+		printf ("\nSETTINGS");
+		printf ("\n1. Change Decimal Places");
+		printf ("\n2. Change PIN");
+		printf ("\n3. Back");
+		
+		printf ("\nEnter your choice: ");
+		scanf("%d", &settingsChoice);
+		
+		if (settingsChoice == 1) {
+			printf ("\nEnter decimal places: ");
+			scanf("%d", &decimal);
+			printf ("\nDecimal places changed!");
+		}
+		
+		else if (settingsChoice == 2) {
+			printf ("\nEnter current PIN: ");
+			scanf("%d", &currentPin);
+			
+			if (currentPin == correctPin) {
+				printf ("Enter the new PIN: ");
+				scanf("%d", &newPin);
+				
+				correctPin == newPin;
+				
+				printf ("\nPIN changed succesfully!");
+			}
+			else {
+				printf ("\nIncorrect current PIN!");
+			}
+		}
+		else if (settingsChoice == 3) {
+			settingsAgain = 0;
+		}
+		else {
+			printf ("\nInvalid choice!");
+		}
+	}
+}
+	else if (choice == 13) {
+		printf ("\nEnter numerator: ");
+		scanf("%d", &numerator);
+		
+		printf("\nEnter the denominator: ");
+		scanf("%d", &denominator);
+		
+		if (denominator !=0) {
+			printf ("\nFraction = %d/%d", numerator, denominator);
+			printf ("\nDecimal = %*f", decimal, 
+										(float)numerator / denominator);
+		}
+		else {
+			printf ("\nCannot divide by zero.");
+		}
+	}
+	
+	else if (choice == 7) {
 	
 	
+		printf ("\nEnter a value: ");
+		scanf("%f", &calcu1);
+		
+		if (calcu1 >= 0) {
+			result = sqrt(calcu1);
+			printf("Result = %.*f", decimal, result);
+			
+			firstNumber[count] = calcu1;
+			secondNumber[count] = 0;
+			history[count] = result;
+			operation[count] = 'r';
+			count++;
+			
+		} else {
+			printf ("Cannot find square root of a negative number.");
+		}
+	}
+	else {
 	
 	printf ("\nEnter the calcu1: ");
 	scanf("%f", &calcu1); 
@@ -32,31 +202,81 @@ int main () {
 	scanf("%f", &calcu2);
 	
 	
-	
 	switch (choice) {
 		
 		case  1:
-			printf ("Result = %.2f", calcu1 + calcu2);
+			result = calcu1 + calcu2;
+			printf ("Result = %.*f", decimal, result);
+			
+			firstNumber[count] = calcu1;
+			secondNumber[count] = calcu2;
+			history[count] = result;
+			operation[count] = '+';
+			count++;
 			break;
+		
 		case  2:
-			printf ("Result = %.2f", calcu1 - calcu2);
+			result = calcu1 - calcu2;
+			printf ("Result = %.*f", decimal, result);
+			
+			firstNumber[count] = calcu1;
+			secondNumber[count] = calcu2; 
+			history[count] = result;
+			operation[count] = '-';
+			count++;
 			break;
+			
 		case  3:
-			printf ("Result = %.2f", calcu1 * calcu2);		
+			result = calcu1 * calcu2;
+			printf ("Result = %.*f", decimal, result);
+			
+			firstNumber[count] = calcu1;
+			secondNumber[count] = calcu2;
+			history[count] = result;
+			operation[count]  = '*';
+			count++;		
 			break;
+			
 		case  4:
 			if (calcu2 != 0) {
-				printf ("Result = %.2f", calcu1 / calcu2);
+				result = calcu1 / calcu2;
+				printf ("Result = %.*f", decimal, result);
+				
+				firstNumber[count] = calcu1;
+				secondNumber[count] = calcu2;
+				history[count] = result;
+				operation[count] = '/';
+				count++;
 			} else {
 				printf ("Cannot be divided by zero");
 			}
+			break;
 						
 		case 5:
-			if (calcu !=0) {
-				printf ("Result = %.2f" fmod(calcu1, calcu2));
+			if (calcu2 !=0) {
+				result = fmod(calcu1, calcu2);
+				printf ("Result = %.*f", decimal, result);
+				
+				firstNumber[count] = calcu1;
+				secondNumber[count] = calcu2;
+				history[count] = result;
+				operation[count] = '%';
+				count++;
 			} else {
 				printf ("Cannot be modulo by zero");
 			}
+			break;
+			
+		case 6:
+			result = pow(calcu1, calcu2);
+			printf ("Result = %.*f", decimal, result);
+			
+			firstNumber[count] = calcu1;
+			secondNumber[count] = calcu2;
+			history[count] = result;
+			operation[count] = '^';
+			count++;
+			break;	
 			
 		default:
 			printf ("Invalid operator");	
@@ -65,7 +285,7 @@ int main () {
 }
 	printf ("\n\nDo you want to calculate again? ");
 	printf ("\nEnter 1 if YES and Enter 0 if NO: ");
-	scanf("%d", &choice); 
-	
+	scanf("%d", &again); 
+}
 	return 0;
 }
