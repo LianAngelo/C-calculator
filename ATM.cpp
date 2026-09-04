@@ -36,16 +36,16 @@ int main () {
 		return 0;
 	}
 	
-	while (choice != 4) {
+	while (choice != 6) {
 	
 	
 	printf ("\nATM MENU\n");
 	printf ("1. Check Balance\n");
 	printf ("2. Withdraw Money\n");
 	printf ("3. Deposit Money\n");
-	printf ("4. Change PIN\n");
-	printf ("5: Exit\n");
-	printf ("6./");
+	printf ("4. MINI STATEMENTS\n");
+	printf ("5: Change PIN\n");
+	printf ("6. Exit\n");
 	
 	printf ("\nEnter your choice: ");
 	scanf("%d", &choice);
@@ -84,6 +84,13 @@ int main () {
 		printf ("\nNew Balance: $%.2f\n", balance);
 	}
 	
+	else if (choice == 4) {
+		printf ("\n-----MINI STATEMENTS-----\n");
+		printf ("Last Deposit: $%.2f\n", lastDeposit);
+		printf ("Last Withdraw: $%.2f\n", lastWithdraw);
+		printf ("Current Balance: $%.2f\n", balance);
+		printf ("\n--------------\n");
+	}
 	
 	
 	else if (choice == 5) {
