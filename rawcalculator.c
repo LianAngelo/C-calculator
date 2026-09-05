@@ -42,7 +42,7 @@ int main () {
 		return 0;
 	}
 	
-	while (choice != 14 && again == 1) {
+	while (choice != 16 && again == 1) {
 	
 	printf ("\nCALCULATOR");
 	printf ("\n1. Addition");
@@ -58,12 +58,14 @@ int main () {
 	printf ("\n11. Show Average");
 	printf ("\n12. Settings");
 	printf ("\n13. Fraction");
-	printf ("\n14. Exit");
+	printf ("\n14. Percentage");
+	printf ("\n15. Even or Odd");
+	printf ("\n16. Exit");
 	
 	printf ("\nEnter your choice: ");
 	scanf ("%d",&choice);
 	
-	if (choice == 14) {
+	if (choice == 16) {
 		printf ("\nCalculator closed");
 		break;
 	}
@@ -165,7 +167,7 @@ int main () {
 		
 		if (denominator !=0) {
 			printf ("\nFraction = %d/%d", numerator, denominator);
-			printf ("\nDecimal = %*f", decimal, 
+			printf ("\nDecimal = %.*f", decimal, 
 										(float)numerator / denominator);
 		}
 		else {
@@ -193,6 +195,31 @@ int main () {
 			printf ("Cannot find square root of a negative number.");
 		}
 	}
+		else if (choice == 14) {
+			printf ("\nEnter the number: ");
+			scanf("%f", &calcu1);
+			
+			printf ("\nEnter the percentage: ");
+			scanf("%f", &calcu2);
+			
+			result = (calcu1 * calcu2) / 100;
+			
+			printf ("\n%.2f%% of %.2f = %.*f",
+											 calcu2, calcu1, decimal, result);			
+		}
+		
+		else if (choice == 15) {
+			printf ("\nEnter a number: ");
+			scanf("%f", calcu1);
+			
+			if ((int) calcu1 % 2 == 0) {
+				printf ("\n%.0f is EVEN", calcu1);
+			}
+			else {
+				printf ("\n%.0f is ODD", calcu1);
+			}
+		}
+		
 	else {
 	
 	printf ("\nEnter the calcu1: ");
